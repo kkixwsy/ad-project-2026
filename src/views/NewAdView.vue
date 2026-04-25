@@ -69,31 +69,20 @@ export default {
   data() {
     return {
       valid: false,
-      loading: false,
       title: "",
       description: "",
-      promo: false
+      promo: true
     }
   },
   methods: {
     createAd() {
       if (this.$refs.form.validate()) {
-        this.loading = true;
-        
         const ad = {
           title: this.title,
           desc: this.description,
-          promo: this.promo,
-          src: "",
-          id: ""
+          promo: this.promo
         }
-        
-        console.log(ad);
-        
-        // Здесь будет отправка на сервер
-        setTimeout(() => {
-          this.loading = false;
-        }, 1000);
+        console.log(ad)
       }
     }
   }
