@@ -45,6 +45,11 @@ path: "/orders",
 name: "orders",
 component: OrdersView
 }
+{
+  path: '/new',
+  name: 'NewAd',
+  component: () => import('@/views/NewAdView.vue')
+}
 ]
 
 
