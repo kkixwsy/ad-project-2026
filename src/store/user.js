@@ -22,8 +22,7 @@ export default {
       commit('setLoading', true)
       
       // Здесь выполняется запрос на сервер
-      let isRequestOk = true  // Для успешной регистрации
-      // let isRequestOk = false  // Для имитации ошибки
+      let isRequestOk = true
       
       let promise = new Promise(function(resolve) {
         setTimeout(() => resolve('Done'), 3000)
@@ -48,8 +47,7 @@ export default {
       commit('setLoading', true)
       
       // Здесь выполняется запрос на сервер
-      let isRequestOk = true  // Для успешного входа
-      // let isRequestOk = false  // Для имитации ошибки
+      let isRequestOk = true
       
       let promise = new Promise(function(resolve) {
         setTimeout(() => resolve('Done'), 3000)
@@ -67,6 +65,10 @@ export default {
           throw new Error('Упс... Ошибка логина или пароля')
         })
       }
+    },
+    
+    logoutUser({ commit }) {
+      commit('setUser', null)
     }
   },
   getters: {
