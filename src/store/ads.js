@@ -41,9 +41,33 @@ export default {
     }
   },
   actions: {
-    createAd({ commit }, payload) {
+    async createAd({ commit, getters }, payload) {
       payload.id = Math.random()
-      commit('createAd', payload)
+      payload.userId = getters.user != null ? getters.user.id : '1'
+      
+      commit('clearError')
+      commit('setLoading', true)
+      
+      // Заглушка запроса
+      let isRequestOk = true
+      // let isRequestOk = false  // Для имитации ошибки
+      
+      let promise = new Promise(function(resolve) {
+        setTimeout(() => resolve('Done'), 3000)
+      })
+      
+      if (isRequestOk) {
+        await promise.then(() => {
+          commit('createAd', payload)
+          commit('setLoading', false)
+        })
+      } else {
+        await promise.then(() => {
+          commit('setLoading', false)
+          commit('setError', 'Ошибка создания объявления')
+          throw new Error('Упс... Ошибка создания объявления')
+        })
+      }
     }
   },
   getters: {
