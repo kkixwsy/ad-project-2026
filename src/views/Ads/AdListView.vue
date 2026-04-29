@@ -7,10 +7,8 @@
         <v-card v-for="ad in ads" :key="ad.id" class="mb-3" max-width="1000">
           <v-row>
             <v-col xs="4">
-              <v-img :src="ad.src" height="175px" cover>
-              </v-img>
+              <v-img :src="ad.src" height="175px" cover></v-img>
             </v-col>
-
             <v-col xs="8">
               <h2 class="text--primary">{{ ad.title }}</h2>
               <p style="height: 85px; overflow: hidden; text-overflow: ellipsis;">{{ ad.desc }}</p>
@@ -34,25 +32,32 @@ export default {
     return {
       ads: [
         {
-          title: "iPhone 15 Pro",
-          desc: "Новый iPhone 15 Pro в отличном состоянии. Гарантия 1 год.",
+          title: "First",
+          desc: "First Desc",
           promo: true,
           src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
           id: "1"
         },
         {
-          title: "Samsung Galaxy S24",
-          desc: "Флагманский смартфон Samsung. Отличная камера и производительность.",
-          promo: false,
+          title: "Second",
+          desc: "Second Desc",
+          promo: true,
           src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
           id: "2"
         },
         {
-          title: "MacBook Pro 16",
-          desc: "Мощный ноутбук для работы и творчества. M2 Pro, 16GB RAM, 512GB SSD.",
+          title: "Third",
+          desc: "Thitd Desc",
           promo: true,
           src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
           id: "3"
+        },
+        {
+          title: "Fouth",
+          desc: "Fouth Desc",
+          promo: true,
+          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
+          id: "4"
         }
       ]
     }
