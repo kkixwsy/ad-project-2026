@@ -50,7 +50,6 @@ export default {
       
       // Заглушка запроса
       let isRequestOk = true
-      // let isRequestOk = false  // Для имитации ошибки
       
       let promise = new Promise(function(resolve) {
         setTimeout(() => resolve('Done'), 3000)
@@ -79,8 +78,10 @@ export default {
         return ad.promo
       })
     },
-    myAds(state) {
-      return state.ads
+    myAds(state, getters) {
+      return state.ads.filter(ad => {
+        return ad.userId == getters.user.id
+      })
     },
     adById(state) {
       return id => {
