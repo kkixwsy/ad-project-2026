@@ -29,6 +29,7 @@
               label="Your name"
               type="text"
               v-model="name"
+              :disabled="localLoading"
             >
             </v-text-field>
             <v-text-field
@@ -36,6 +37,7 @@
               label="Your phone"
               type="text"
               v-model="phone"
+              :disabled="localLoading"
             >
             </v-text-field>
           </v-card-text>
@@ -46,8 +48,17 @@
         <v-col cols="12">
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn @click="onClose">Close</v-btn>
-            <v-btn @click="onSave" color="success">Buy It!</v-btn>
+            <v-btn 
+              text 
+              @click="onClose"
+              :disabled="localLoading"
+            >Close</v-btn>
+            <v-btn 
+              color="success" 
+              @click="onSave"
+              :disabled="localLoading"
+              :loading="localLoading"
+            >Buy it!</v-btn>
           </v-card-actions>
         </v-col>
       </v-row>
@@ -61,8 +72,9 @@ export default {
   data() {
     return {
       modal: false,
-      name: '',
-      phone: ''
+      name: "",
+      phone: "",
+      localLoading: false
     }
   },
   methods: {
@@ -73,6 +85,7 @@ export default {
     },
     onSave() {
       if (this.name !== '' && this.phone !== '') {
+        this.localLoading = true
         this.$store.dispatch('createOrder', {
           name: this.name,
           phone: this.phone,
@@ -80,6 +93,7 @@ export default {
           userId: this.ad.userId
         })
         .finally(() => {
+          this.localLoading = false
           this.name = ""
           this.phone = ""
           this.modal = false
